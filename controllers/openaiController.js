@@ -16,20 +16,20 @@ const generateMeta = async (req, res) => {
   })
   console.log(description.data.choices[0].message)
 
-  // // Create tags
-  // const tags = await openai.createChatCompletion({
-  //   model: "gpt-3.5-turbo",
-  //   messages: [{
-  //     role: 'user',
-  //     content:`come up with 10 keywords for a YouTube video called ${title}`
-  //   }],
-  //   max_tokens: 100
-  // })
-  // console.log(tags.data.choices[0].message)
+  // Create tags
+  const tags = await openai.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [{
+      role: 'user',
+      content:`come up with 10 keywords for a YouTube video called ${title}`
+    }],
+    max_tokens: 100
+  })
+  console.log(tags.data.choices[0].message)
 
   res.status(200).json({
     description: description.data.choices[0].message,
-    // tags: tags.data.choices[0].message
+    tags: tags.data.choices[0].message
   })
 }
 
